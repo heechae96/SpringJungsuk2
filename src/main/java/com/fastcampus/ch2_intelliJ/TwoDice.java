@@ -12,6 +12,7 @@ public class TwoDice {
     public void dice(HttpServletResponse rep) throws Exception{
         // 실행할때마다 결과가 변하게 하기 위함. 동적 리소스
         int idx1 = (int)(Math.random()*6)+1;
+        // 디버깅 해서 Tomcat의 내부 구조 확인!
         int idx2 = (int)(Math.random()*6)+1;
 
         rep.setContentType("text/html");
