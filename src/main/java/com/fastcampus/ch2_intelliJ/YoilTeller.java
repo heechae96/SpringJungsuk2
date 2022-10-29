@@ -13,7 +13,7 @@ import java.util.Calendar;
 public class YoilTeller {   // http://localhost:8080/ch2/getYoil?year=2022&month=10&day=25
 //    public static void main(String[] args) {
     @RequestMapping("/getYoil")
-    public static void main(HttpServletRequest req, HttpServletResponse rep) throws Exception{
+    public void main(HttpServletRequest req, HttpServletResponse rep) throws Exception{
         // 입력
 //        String year = args[0];
 //        String month = args[1];
@@ -42,7 +42,13 @@ public class YoilTeller {   // http://localhost:8080/ch2/getYoil?year=2022&month
         rep.setCharacterEncoding("utf-8");
 
         PrintWriter out = rep.getWriter();  // rep(response)객체에서 브라우져로의 출력 스트림을 얻는다
+        out.println("<html>");
+        out.println("<head>");
+        out.println("</head>");
+        out.println("<body>");
         out.print(Year + "년 " + Month + "월 " + Day + "일은 ");
         out.println(yoil + "요일");
+        out.println("</body>");
+        out.println("</html>");
     }
 }
