@@ -3,6 +3,7 @@ package com.fastcampus.ch2_intelliJ;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,27 +15,41 @@ import java.util.Calendar;
 public class YoilTellerMVC {   // http://localhost:8080/ch2/getYoilMVC?year=2022&month=10&day=25
     //    public static void main(HttpServletRequest req, HttpServletResponse rep) throws Exception{
     @RequestMapping("/getYoilMVC")
-    public String main(int year, int month, int day, Model model) throws Exception {
+//    public String main(int year, int month, int day, Model model) throws Exception {
+//    public void main(int year, int month, int day, Model model) throws Exception {
+    public ModelAndView main(int year, int month, int day) throws Exception {
+
+        ModelAndView mv = new ModelAndView();
+
         // 입력
 //        int yyyy = Integer.parseInt(Year);
 //        int mm = Integer.parseInt(Month);
 //        int dd = Integer.parseInt(Day);
 
         // 1. 유효성 검사
-        if (!isValid(year, month, day)) {
-            return "yoilError";  //  /WEB-INF/views/yoilError.jsp
-        }
+//        if (!isValid(year, month, day)) {
+//            return "yoilError";  //  /WEB-INF/views/yoilError.jsp
+//        }
 
         // 2. 요일 계산
         char yoil = getYoil(year, month, day);
 
         // 3. 계산한 결과를 model에 저장
-        model.addAttribute("year", year);
-        model.addAttribute("month", month);
-        model.addAttribute("day", day);
-        model.addAttribute("yoil", yoil);
+//        model.addAttribute("year", year);
+//        model.addAttribute("month", month);
+//        model.addAttribute("day", day);
+//        model.addAttribute("yoil", yoil);
 
-        return "yoil";  //  /WEB-INF/views/yoil.jsp
+        mv.addObject("year", year);
+        mv.addObject("month", month);
+        mv.addObject("day", day);
+        mv.addObject("yoil", yoil);
+
+        // 4. 결과를 보여줄 view를 지정
+        mv.setViewName("yoil");
+        return mv;
+
+//        return "yoil";  //  /WEB-INF/views/yoil.jsp
 
     }
 
