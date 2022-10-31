@@ -5,7 +5,7 @@ import java.lang.reflect.Parameter;
 import java.util.StringJoiner;
 
 public class MethodInfo {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
         // 1. YoilTeller클래스의 객체를 생성
         Class clazz = Class.forName("com.fastcampus.ch2_intelliJ.YoilTellerMVC");
@@ -15,7 +15,7 @@ public class MethodInfo {
         Method[] methodArr = clazz.getDeclaredMethods();
 
         // 반복문으로 메서드 출력
-        for(Method m : methodArr) {
+        for (Method m : methodArr) {
             String name = m.getName();  // 메서드 이름
             Parameter[] paramArr = m.getParameters();   // 매개변수 목록
 //			Class[] paramTypeArr = m.getParameterTypes();
@@ -24,9 +24,9 @@ public class MethodInfo {
             //                                      구분자             접두사     접미사
             StringJoiner paramList = new StringJoiner(", ", "(", ")");
 
-            for(Parameter param : paramArr) {
+            for (Parameter param : paramArr) {
                 String paramName = param.getName();
-                Class  paramType = param.getType();
+                Class paramType = param.getType();
 
                 paramList.add(paramType.getName() + " " + paramName);
             }
