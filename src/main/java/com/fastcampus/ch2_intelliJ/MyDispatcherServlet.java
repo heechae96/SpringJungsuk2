@@ -20,6 +20,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.support.BindingAwareModelMap;
 
 // @Controller + @RequestMapping을 합친것
+// @WebServlet
+//  -> 서블릿으로 등록시키겠다.
 // 서블릿의 단점 : 클래스 단위로만 매핑. 메서드 단위로 매핑 불가. 클래스를 많이 만들어야 하는 단점
 @WebServlet("/myDispatcherServlet")  // http://localhost:8080/ch2/myDispatcherServlet?year=2022&month=10&day=30
 public class MyDispatcherServlet extends HttpServlet {  // 서블릿은 반드시 HttpServlet을 상속 받아야함
