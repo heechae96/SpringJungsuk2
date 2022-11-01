@@ -16,7 +16,7 @@ public class YoilTellerMVC4 {
         return "yoilError";
     }
 
-    @RequestMapping("/getYoilMVC4") // http://localhost/ch2/getYoilMVC4?year=2022&month=11&day=1
+    @RequestMapping("/getYoilMVC4") // http://localhost:8080/ch2/getYoilMVC4?year=2022&month=11&day=1
     public String main(MyDate date, Model model) {  // year, month, day를 MyDate라는 class로 묶은것
         System.out.println("date=" + date);
 

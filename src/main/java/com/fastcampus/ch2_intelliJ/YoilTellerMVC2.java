@@ -16,10 +16,10 @@ public class YoilTellerMVC2 {
         return "yoilError";
     }
 
-    @RequestMapping("/getYoilMVC2") // http://localhost/ch2/getYoilMVC2
-    public String main(@RequestParam(required = true) int year,
-                       @RequestParam(required = true) int month,
-                       @RequestParam(required = true) int day,
+    @RequestMapping("/getYoilMVC2") // http://localhost:8080/ch2/getYoilMVC2
+    public String main(@RequestParam(required = true) int year, // (required = true)이 디폴트라 생략해도 같음
+                       @RequestParam int month,
+                       @RequestParam int day,
                        Model model) {
 
         // 1. 유효성 검사
