@@ -22,7 +22,9 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+
+	<!--	GET요청만 허용. POST는 불가능	-->
+	<view-controller path="/register/add" view-name="registerForm"/>
 	<context:component-scan base-package="com.fastcampus.ch2_intelliJ" />
 	
 	
