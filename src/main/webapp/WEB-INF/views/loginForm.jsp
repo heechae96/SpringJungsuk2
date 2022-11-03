@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.net.URLDecoder" %>
+<%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,6 +68,11 @@
     </style>
 </head>
 <body>
+<%--c:url 태그--%>
+<%--1. context path를 자동으로 포함 ex)ch2--%>
+<%--2. 클라이언트의 브라우져가 쿠키사용을 금지하면 로그인 유지가 힘들어진다.
+이 때 세션을 유지하기위해 url 뒤에 특정값(sessionId)을 부여해줘서 로그인을 유지--%>
+<%--<form action = "ch2/login.login" method="post" onsubmit="return formCheck(this);">--%>
 <form action="<c:url value='/login/login'/>" method="post" onsubmit="return formCheck(this);">
     <h3 id="title">로그인</h3>
     <div id="msg">
@@ -78,6 +84,7 @@
     <%--    <input type="text" name="id" value="asdf" placeholder="아이디" autofocus>--%>
     <input type="text" name="id" value="${cookie.id.value}" placeholder="아이디" autofocus>
     <input type="password" name="pwd" placeholder="비밀번호">
+    <input type="hidden" name="toURL" value="${param.toURL}">
     <button>로그인</button>
     <div>
         <%--    하드코딩 -> 서버에서 만들어주도록--%>

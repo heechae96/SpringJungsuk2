@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -18,11 +20,20 @@ public class LoginController {
         return "loginForm";
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        // 1. 세션을 종료
+        session.invalidate();
+        // 2. 홈으로 이동
+        return "redirect:/";
+    }
+
     @PostMapping("/login")
-    public String login(String id, String pwd, boolean rememberId, HttpServletResponse rep) throws Exception {
-        System.out.println("id = " + id);
-        System.out.println("pwd = " + pwd);
-        System.out.println("rememberId = " + rememberId);
+    public String login(String id, String pwd, boolean rememberId, String toURL,
+                        HttpServletResponse rep, HttpServletRequest req) throws Exception {
+//        System.out.println("id = " + id);
+//        System.out.println("pwd = " + pwd);
+//        System.out.println("rememberId = " + rememberId);
 
         // 1. id와 pwd를 확인
         if (!loginCheck(id, pwd)) {
@@ -32,12 +43,17 @@ public class LoginController {
             return "redirect:/login/login?msg=" + msg;
         }
         // 2-2. id와 pwd가 일치하면
-        if(rememberId){ // 아이디 기억 체크
+        //  세션 객체 얻어오기
+        HttpSession session = req.getSession();
+        //  세션 객체에 id를 저장
+        session.setAttribute("id", id);
+
+        if (rememberId) { // 아이디 기억 체크
             //  1. 쿠키를 생성
             Cookie cookie = new Cookie("id", id);
             //  2. 응답에 저장
             rep.addCookie(cookie);
-        }else{
+        } else {
             // 쿠키를 삭제
             Cookie cookie = new Cookie("id", id);
             cookie.setMaxAge(0);
@@ -45,10 +61,12 @@ public class LoginController {
         }
 
         //  3. 홈으로 이동
-        return "redirect:/";
+        toURL = (toURL == null || toURL.equals("")) ? "/" : toURL;
+//        return "redirect:/" + toURL;  // 주의!!
+        return "redirect:" + toURL;
     }
 
-    private boolean loginCheck(String id, String pwd){
+    private boolean loginCheck(String id, String pwd) {
         return "asdf".equals(id) && "1234".equals(pwd);
 //        return id.equals("asdf") && pwd.equals("1234"); // id와 pwd의 null체크가 필요해짐
     }
