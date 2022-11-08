@@ -1,9 +1,11 @@
 package com.fastcampus.ch2_intelliJ;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.io.FileNotFoundException;
 
@@ -14,9 +16,10 @@ public class ExceptionController {
     //  -> 다른 컨트롤러에서 발생하는 예외는 처리 불가
     // try-catch의 catch블럭이라고 생각하자!
     @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)   // 200 -> 500 에러
     public String catcher(Exception ex, Model m) {
         System.out.println("내부 캐쳐가 처리");
-        m.addAttribute("ex", ex);
+//        m.addAttribute("ex", ex); // isErrorPage="true"로 설정했기 때문에 생략가능
         return "error";
     }
 

@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 
 // 모든 컨트롤러에서 예외 처리!
 //@ControllerAdvice   // 모든 패키지
-@ControllerAdvice("com.fastcampus.ch2_intelliJ")   // 지정 패키지만!
+@ControllerAdvice("com.fastcampus.ch222_intelliJ")   // 지정 패키지만!
 public class GlobalCatcher {
 
     @ExceptionHandler(Exception.class)

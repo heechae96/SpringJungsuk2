@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>error.jsp</title>
+    <title>error500.jsp</title>
 </head>
 <body>
 <h1>예외가 발생했습니다.</h1>
