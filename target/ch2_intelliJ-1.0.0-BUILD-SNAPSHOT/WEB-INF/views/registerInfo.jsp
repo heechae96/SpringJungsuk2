@@ -7,10 +7,10 @@
     <title>Insert title here</title>
     <style>
         div {
-          width: 450px;
-          height: 600px;
-          border: 3px solid dodgerblue;
-          border-radius: 10px;
+            width: auto;
+            height: auto;
+            border: 3px solid dodgerblue;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -21,6 +21,7 @@
     <h1>name=${user.name}</h1>
     <h1>email=${user.email}</h1>
     <h1>birth=${user.birth}</h1>
+    <h1>hobby=${user.hobby}</h1>
     <h1>sns=${user.sns}</h1>
 </div>
 </body>
